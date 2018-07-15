@@ -1,0 +1,59 @@
+<!-- Styles for grid view -->
+<style>
+    .AknFormContainer-Mappings .field-input,.AknFormContainer-Mappings .field-header,.AknFormContainer-Mappings .header-col {
+        display: inline-block;
+        width: calc(33% - 2px);
+        border: none;
+    }
+    .AknFormContainer-Mappings .AknForm-header.widget-header {
+        margin-bottom: 10px;
+    }
+    .AknSettingField {
+        width: 80%;
+    }
+    .ak-margin-top {
+        margin-top: 10px;
+    }
+</style>
+
+<!-- //HTML for form grid view -->
+<div class="AknFormContainer AknFormContainer--withPadding  AknFormContainer-Mappings shopify-importsettings" style="width: 100%">
+    <!-- Smart Collection import setting -->
+    <div class="AknSubsection-title">
+        <%- _.__('Logs Setting') %>
+        
+    </div>
+    <div class="field-group">
+        <div class="AknFieldContainer">
+            <div class="field-header">
+                <label class="AknFieldContainer-label">
+                    <%- _.__('Enable API Request Logs') %> 
+                </label>
+            </div>
+            <div class="field-input">
+                <div class="switch switch-small" data-on-label="Enabled" data-off-label="Disabled">
+                    <input id="pim_enrich_form_enable_request_log" type="checkbox" name="enable_request_log"  <% console.log(model['others']['enable_request_log']); if(model['others']['enable_request_log'] == true) { %> checked <% } %> >
+                </div>
+            </div>
+            
+        </div>
+        <div class="AknFieldContainer">
+            <div class="field-header">
+                <label class="AknFieldContainer-label">
+                    <%- _.__('Enable API Response Logs') %> 
+                </label>
+            </div>
+            <div class="field-input">
+                <div class="switch switch-small" data-on-label="Enabled" data-off-label="Disabled">
+                    <input id="pim_enrich_form_enable_response_log" type="checkbox" name="enable_response_log"  <% console.log(model['others']['enable_response_log']); if(model['others']['enable_response_log'] == true) { %> checked <% } %> >
+                </div>
+            </div>
+            <div class="field-header">
+                <label class="AknFieldContainer-label">
+                    <a href="<%- log_path%>"> <%- _.__('Download log') %></a>
+                </label>
+            </div>    
+        </div>
+        
+    </div>   
+</div>

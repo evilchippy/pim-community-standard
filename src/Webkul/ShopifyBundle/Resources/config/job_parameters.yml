@@ -1,0 +1,26 @@
+services:
+    webkul_shopify_connector.job.job_parameters.shopify_export:
+        class: 'Webkul\ShopifyBundle\JobParameters\ShopifyExport'
+        arguments:
+            - ['%webkul_shopify_connector.job_name%', '%webkul_shopify_connector.category_job_name%', '%webkul_shopify_connector.product_only.job_name%']
+        tags:
+            - { name: akeneo_batch.job.job_parameters.constraint_collection_provider }
+            - { name: akeneo_batch.job.job_parameters.default_values_provider }
+
+    webkul_shopify_connector.job.job_parameters.shopify_quick_export:
+        class: 'Webkul\ShopifyBundle\JobParameters\ShopifyQuickExport'
+        arguments:
+            - ['%webkul_shopify_connector.quick_export_job_name%']
+            - '@pim_catalog.repository.channel'
+            - '@pim_catalog.repository.locale'
+        tags:
+            - { name: akeneo_batch.job.job_parameters.constraint_collection_provider }
+            - { name: akeneo_batch.job.job_parameters.default_values_provider }
+    
+    webkul_shopify_connector.job.job_parameters.shopify_import:
+        class: 'Webkul\ShopifyBundle\JobParameters\ShopifyImport'
+        arguments:
+            - ['%webkul_shopify_connector.import_job_name%']
+        tags:
+            - { name: akeneo_batch.job.job_parameters.constraint_collection_provider }
+            - { name: akeneo_batch.job.job_parameters.default_values_provider }

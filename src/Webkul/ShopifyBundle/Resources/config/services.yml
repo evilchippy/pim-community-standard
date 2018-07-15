@@ -1,0 +1,18 @@
+services:
+    shopify.connector.service:
+        class: 'Webkul\ShopifyBundle\Services\ShopifyConnector'
+        arguments:
+            - '@service_container'
+            - '@doctrine.orm.entity_manager'
+
+    webkul_shopify_jobs.logger:
+        class: 'Webkul\ShopifyBundle\Logger\ApiLogger'
+        arguments:
+            - 'webkul_shopify'
+        calls:
+            - [pushHandler, ['@webkul_shopify_logger_handler']]
+    
+    webkul_shopify_logger_handler:
+        class: Monolog\Handler\StreamHandler
+        arguments: ['%kernel.logs_dir%/webkul_shopify_batch.%kernel.environment%.log', 'info'] 
+    

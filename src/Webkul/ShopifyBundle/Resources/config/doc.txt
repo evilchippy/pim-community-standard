@@ -1,0 +1,27 @@
+### add lines below in app/config/routing.yml ###
+shopify:
+    resource: "@ShopifyBundle/Resources/config/routing.yml"
+    prefix:   /
+
+
+
+
+
+
+
+
+### add function  below in app/AppKernel.php file ###
+
+    /**
+     * Registers your custom bundles
+     *
+     * @return array
+     */
+    protected function registerProjectBundles()
+    {
+        return [
+            // your app bundles should be registered here
+                new Webkul\ShopifyBundle\ShopifyBundle(),
+        ];
+    }
+

@@ -1,0 +1,7 @@
+batch_jobs.shopify_export.label: Shopify Export Job
+batch_jobs.shopify_category_export.label: Shopify Category only Export
+batch_jobs.shopify_category_export.category_export.label: Category Export
+batch_jobs.shopify_product_export.label: Shopify Product only export
+batch_jobs.shopify_product_export.product_export.label: Shopify Product export
+batch_jobs.shopify_import.label: Shopify Import Job
+shopify_import: Shopify Import Job

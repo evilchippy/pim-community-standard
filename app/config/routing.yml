@@ -1,3 +1,7 @@
+shopify:
+    resource: "@ShopifyBundle/Resources/config/routing.yml"
+    prefix:   /
+
 # PIM
 pim_analytics:
     resource: "@PimAnalyticsBundle/Resources/config/routing.yml"

@@ -1,0 +1,45 @@
+parameters:
+    shopify.properties.normalizer.class: Webkul\ShopifyBundle\Connector\Processor\Normalizer\PropertiesNormalizer
+    webkul_shopify.processor.denormalization.root_product_model.class: Webkul\ShopifyBundle\Connector\Processor\Import\ProductRootModelProcessor
+
+services:
+    webkul_shopify.product.normalizer:
+        class: '%pim_catalog.normalizer.standard.product.class%'
+        arguments:
+            - '@webkul_shopify.properties.normalizer'
+            - '@pim_catalog.normalizer.standard.product.associations'
+        tags:
+            - { name: pim_serializer.normalizer, priority: 90 }
+
+    webkul_shopify.properties.normalizer:
+        class: '%shopify.properties.normalizer.class%'
+        arguments:
+            - '@pim_catalog.filter.chained'
+            # - '@pim_catalog.repository.variant_product'
+        tags:
+            - { name: pim_serializer.normalizer, priority: 40 }
+    
+    webkul_shopify.processor.quick_export.product:
+        class: 'Webkul\ShopifyBundle\Connector\Processor\ProductQuickProcessor'
+        arguments:
+            - '@pim_catalog.normalizer.standard.product'
+            - '@pim_catalog.repository.channel'
+            - '@pim_catalog.repository.attribute'
+            - '@pim_catalog.values_filler.product'
+            - '@akeneo_storage_utils.doctrine.object_detacher'
+            - '@pim_user.provider.user'
+            - '@security.token_storage'
+            - '@pim_connector.processor.bulk_media_fetcher'                    
+    
+    webkul_shopify.processor.denormalization.root_product_model:
+        class: '%webkul_shopify.processor.denormalization.root_product_model.class%'
+        arguments:
+            - '@pim_catalog.factory.product_model'
+            - '@pim_catalog.updater.product_model'
+            - '@pim_catalog.repository.product_model'
+            - '@pim_catalog.validator.product'
+            - '@pim_catalog.comparator.filter.product_model'
+            - '@akeneo_storage_utils.doctrine.object_detacher'
+            - '@pim_connector.processor.attribute_filter.product_model'
+            - 'root_product_model'
+        

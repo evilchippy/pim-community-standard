@@ -1,0 +1,60 @@
+batch_jobs.shopify_export.label: Shopify Export Job
+shopify.form.properties.shop_url.title: Shop Url
+shopify.form.properties.api_key.title: Api key
+shopify.form.properties.password.title: Api Password
+shopify.documentation: Documentation
+shopify.credentials.tab: Credentials
+shopify.settings.tab:  Attribute Mappings
+shopify.importsettings.tab: Import Attribute Mappings
+shopify.othersettings.tab: Other Settings
+shopify.connector.title: Shopify Akeneo Connector
+page_title.webkul_shopify_connector_configuration: Shopify Connector
+
+
+shopify.useas.name: Name
+shopify.useas.description: Description
+shopify.useas.vendor: Vendor
+shopify.useas.product_type: Product type
+shopify.useas.seo_title: Meta Title (SEO)
+shopify.useas.seo_description: Meta Description (SEO)
+shopify.useas.price: Price
+shopify.useas.compare_at_price: Compare Price
+shopify.useas.weight: Weight
+shopify.useas.quantity: Stock quantity
+shopify.useas.variant_name: Variant Name
+shopify.useas.tags.comma.separated: Tags(comma separated)
+
+shopify.field_label: Field in Shopify
+shopify.field_in_akeneo: Use value of this Attribute
+shopify.field_value: Use this fixed value
+shopify.export.view.jobs: View Export jobs
+
+
+shopify.connector: Shopify Connector
+shopify.useas.barcode: Barcode
+batch_jobs.shopify_export.category_export.label: Category/Collection Export
+batch_jobs.shopify_export.product_export.label: Product and Product Variants Export
+shopify.useas.taxable: Taxable (1/0)
+shopify.useas.requires_shipping: Requires shipping
+shopify.useas.fulfillment_service: Fulfillment Service (manual, gift_card or other)
+shopify.useas.handle: URL and handle
+shopify.override_credentials.text: Provide credentials below only if want to use different credentials from common credentials. Otherwise don't fill fields below.
+pim.grid.mass_action.quick_export.shopify: Shopify Export (All Attributes)
+batch_jobs.shopify_quick_export.product_export.label: Product and Variants Quick Export
+batch_jobs.shopify_category_export.label: Shopify Category only Export
+batch_jobs.shopify_category_export.category_export.label: Category Export
+batch_jobs.shopify_product_export.label: Shopify Product only export
+batch_jobs.shopify_product_export.product_export.label: Shopify Product export
+
+shopify.import.view.jobs: View Import jobs
+pim_enrich.form.job_instance.button.import.title: IMPORT NOW
+batch_jobs.shopify_import.category_import.label: Category Import
+batch_jobs.shopify_import.product_import.label: Product Import
+batch_jobs.shopify_import.product_model_import.label: Product Model Import
+batch_jobs.shopify_import.attribute_import.label: Attribute Import
+batch_jobs.shopify_import.attribute_option_import.label: Attribute Options Import
+batch_jobs.shopify_import.family_variant_import.label: Family Variant Import
+batch_jobs.shopify_import.import_product_model_descendants.label: Product Model Descendants
+batch_jobs.shopify_import.label: Shopify Import Product
+batch_jobs.shopify_quick_export.category_export.label: Category Export (of selected products)
+batch_jobs.shopify_import.label: Shopify Import Product

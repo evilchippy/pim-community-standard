@@ -1,0 +1,37 @@
+Webkul\ShopifyBundle\Entity\DataMapping:
+    type: entity
+    table: wk_shopify_data_mapping
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        entityType:
+            type: string
+            length: 255
+        code:
+            type: string
+            length: 255
+        externalId:
+            type: string
+            length: 255
+        relatedId:
+            type: string
+            length: 255
+            nullable: true
+            options:
+                default: null
+        jobInstanceId:
+            type: integer
+            nullable: true
+        relatedSource:
+            type: json_array
+            nullable: true
+            options:
+                default: null
+        apiUrl:
+            type: string
+            length: 255
+    lifecycleCallbacks: {  }

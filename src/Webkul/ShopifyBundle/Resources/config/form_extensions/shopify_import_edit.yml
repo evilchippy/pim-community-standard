@@ -1,0 +1,286 @@
+extensions:
+    pim-job-instance-shopify-import-edit:
+        module: pim/form/common/edit-form
+
+    pim-job-instance-shopify-import-edit-main-image:
+        module: pim/form/common/main-image
+        parent: pim-job-instance-shopify-import-edit
+        targetZone: main-image
+        config:
+            path: bundles/pimui/images/illustration-import.svg
+
+    pim-job-instance-shopify-import-edit-user-navigation:
+        module: pim/menu/user-navigation
+        parent: pim-job-instance-shopify-import-edit
+        targetZone: user-menu
+        config:
+            userAccount: pim_menu.user.user_account
+            logout: pim_menu.user.logout
+
+    pim-job-instance-shopify-import-edit-breadcrumbs:
+        module: pim/common/breadcrumbs
+        parent: pim-job-instance-shopify-import-edit
+        targetZone: breadcrumbs
+        config:
+            tab: pim-menu-imports
+
+    pim-job-instance-shopify-import-edit-cache-invalidator:
+        module: pim/cache-invalidator
+        parent: pim-job-instance-shopify-import-edit
+        position: 1000
+
+    pim-job-instance-shopify-import-edit-tabs:
+        module: pim/form/common/form-tabs
+        parent: pim-job-instance-shopify-import-edit
+        targetZone: content
+        position: 100
+
+    pim-job-instance-shopify-import-edit-properties:
+        module: pim/job/common/edit/properties
+        parent: pim-job-instance-shopify-import-edit-tabs
+        aclResourceId: pim_importexport_export_profile_property_edit
+        targetZone: container
+        position: 100
+        config:
+            tabTitle: pim_enrich.form.job_instance.tab.properties.title
+            tabCode: pim-job-instance-properties
+
+    pim-job-instance-shopify-import-edit-history:
+        module: pim/common/tab/history
+        parent: pim-job-instance-shopify-import-edit-tabs
+        targetZone: container
+        aclResourceId: pim_importexport_export_profile_history
+        position: 150
+        config:
+            class: Akeneo\Component\Batch\Model\JobInstance
+            title: pim_enrich.form.job_instance.tab.history.title
+            tabCode: pim-job-instance-history
+
+    pim-job-instance-shopify-import-edit-properties-code:
+        module: pim/job/common/edit/field/text
+        parent: pim-job-instance-shopify-import-edit-properties
+        position: 100
+        targetZone: properties
+        config:
+            fieldCode: code
+            label: pim_enrich.form.job_instance.tab.properties.code.title
+            readOnly: true
+
+    pim-job-instance-shopify-import-edit-properties-label:
+        module: pim/job/common/edit/field/text
+        parent: pim-job-instance-shopify-import-edit-properties
+        position: 110
+        targetZone: properties
+        config:
+            fieldCode: label
+            label: pim_enrich.form.job_instance.tab.properties.label.title
+            readOnly: false
+
+    pim-job-instance-shopify-import-edit-label:
+        module: pim/job/common/edit/label
+        parent: pim-job-instance-shopify-import-edit
+        targetZone: title
+        position: 100
+
+    pim-job-instance-shopify-import-edit-meta:
+        module: pim/job/common/edit/meta
+        parent: pim-job-instance-shopify-import-edit
+        targetZone: meta
+        position: 100
+
+    pim-job-instance-shopify-import-edit-secondary-actions:
+        module: pim/form/common/secondary-actions
+        parent: pim-job-instance-shopify-import-edit
+        targetZone: buttons
+        position: 50
+
+    pim-job-instance-shopify-import-edit-delete:
+        module: pim/job/export/edit/delete
+        parent: pim-job-instance-shopify-import-edit-secondary-actions
+        targetZone: secondary-actions
+        aclResourceId: pim_importexport_export_profile_remove
+        position: 100
+        config:
+            trans:
+                title: confirmation.remove.export_profile
+                subTitle: pim_menu.item.export_profile
+                content: pim_enrich.confirmation.delete_item
+                success: flash.job_instance.removed
+                failed: error.removing.job_instance
+            redirect: pim_importexport_import_profile_index
+
+    pim-job-instance-shopify-import-edit-save-buttons:
+        module: pim/form/common/save-buttons
+        parent: pim-job-instance-shopify-import-edit
+        targetZone: buttons
+        position: 120
+
+    pim-job-instance-shopify-import-edit-save:
+        module: pim/job-instance-export-edit-form/save
+        parent: pim-job-instance-shopify-import-edit
+        targetZone: buttons
+        position: 0
+        config:
+            redirectPath: pim_importexport_import_profile_show
+
+    pim-job-instance-shopify-import-edit-state:
+        module: pim/form/common/state
+        parent: pim-job-instance-shopify-import-edit
+        targetZone: state
+        position: 900
+        config:
+            entity: pim_enrich.entity.job_instance.title
+
+
+    pim-job-instance-shopify-import-edit-content-structure-scope:
+        module: pim/job/product/edit/content/structure/scope
+        parent: pim-job-instance-shopify-import-edit-content-structure
+        targetZone: filters
+        position: 90
+
+    pim-job-instance-shopify-import-edit-content-structure-locales:
+        module: shopify/form/configuration/locales
+        parent: pim-job-instance-shopify-import-edit-content-structure
+        targetZone: filters
+        position: 100
+
+    pim-job-instance-shopify-import-edit-content-structure-currencies:
+        module: shopify/form/configuration/currencies
+        parent: pim-job-instance-shopify-import-edit-content-structure
+        targetZone: filters
+        position: 110       
+
+    # pim-job-instance-shopify-import-edit-content-structure-attributes:
+    #     module: pim/job/product/edit/content/structure/attributes
+    #     parent: pim-job-instance-shopify-import-edit-content-structure
+    #     targetZone: filters
+    #     position: 120
+    
+    # pim-job-instance-shopify-import-edit-content-structure-family:
+    #     module: shopify/form/configuration/family
+    #     config:
+    #         url: pim_enrich_family_rest_index
+    #     parent: pim-job-instance-shopify-import-edit-content-structure
+    #     targetZone: filters
+    #     position: 130 
+        
+
+    # pim-job-instance-shopify-import-edit-content-data:
+    #     module: pim/job/product/edit/content/data
+    #     parent: pim-job-instance-shopify-import-edit-content
+    #     targetZone: filters
+    #     config:
+    #         filters:
+    #             -
+    #                 field: family
+    #                 view: akeneo-product-family-filter
+                # -
+                #     field: enabled
+                #     view: akeneo-product-enabled-filter
+                # -
+                #     field: completeness
+                #     view: akeneo-product-completeness-filter
+                # -
+                #     field: updated
+                #     view: akeneo-product-updated-filter
+                # -
+                #     field: categories
+                #     view: akeneo-product-category-filter
+
+    # pim-job-instance-shopify-import-edit-content-default-attribute-filters:
+    #     module: pim/job/product/edit/content/data/default-attribute-filters
+    #     parent: pim-job-instance-shopify-import-edit-content-data
+    #     config:
+    #         types: [pim_catalog_identifier]
+
+    pim-job-instance-shopify-import-edit-content-data-help:
+        module: pim/job/common/edit/content/data/help
+        parent: pim-job-instance-shopify-import-edit-content-data
+
+    pim-job-instance-shopify-import-edit-validation:
+        module: pim/job/common/edit/validation
+        parent: pim-job-instance-shopify-import-edit
+
+    pim-job-instance-shopify-import-edit-content-data-add-filter:
+        module: pim/job/product/edit/content/data/add-select/attribute
+        parent: pim-job-instance-shopify-import-edit-content-data
+        targetZone: headings
+        position: 90
+
+    # properties
+    pim-job-instance-shopify-import-edit-properties:
+        module: pim/job/common/edit/properties
+        parent: pim-job-instance-csv-base-export-edit-tabs
+        aclResourceId: pim_importexport_export_profile_property_edit
+        targetZone: container
+        position: 110
+        config:
+            tabTitle: pim_enrich.form.job_instance.tab.properties.title
+            tabCode: pim-job-instance-properties
+
+
+    # structure/ filter the data
+    pim-job-instance-shopify-import-edit-content:
+        module: pim/job/product/edit/content
+        parent: pim-job-instance-shopify-import-edit-tabs
+        aclResourceId: pim_importexport_export_profile_content_edit
+        targetZone: container
+        position: 130
+        config:
+            tabTitle: pim_enrich.form.job_instance.tab.content.title
+            tabCode: pim-job-instance-content
+
+    pim-job-instance-shopify-import-edit-content-structure:
+        module: pim/job/product/edit/content/structure
+        parent: pim-job-instance-shopify-import-edit-content
+        targetZone: structure-filters
+        position: 100
+
+    # credentials
+    pim-job-instance-shopify-import-edit-credentials:
+        module: shopify/job/export/credentials
+        parent: pim-job-instance-shopify-import-edit-tabs
+        aclResourceId: pim_importexport_export_profile_content_edit
+        targetZone: container
+        position: 140
+        config:
+            tabTitle: shopify.credentials.tab
+            tabCode: pim-job-instance-credentials
+
+    pim-job-instance-shopify-import-edit-credentials-meta:
+        module: shopify/common/meta
+        parent: pim-job-instance-shopify-import-edit-credentials
+        targetZone: credentials
+        position: 100
+        config:
+            text: shopify.override_credentials.text
+            
+    pim-job-instance-shopify-import-edit-credentials-shopUrl:
+        module: pim/job/common/edit/field/text
+        parent: pim-job-instance-shopify-import-edit-credentials
+        position: 110
+        targetZone: credentials
+        config:
+            fieldCode: configuration.shopUrl
+            label: shopify.form.properties.shop_url.title
+            readOnly: false
+
+    pim-job-instance-shopify-import-edit-credentials-apiKey:
+        module: pim/job/common/edit/field/text
+        parent: pim-job-instance-shopify-import-edit-credentials
+        position: 120
+        targetZone: credentials
+        config:
+            fieldCode: configuration.apiKey
+            label: shopify.form.properties.api_key.title
+            readOnly: false
+
+    pim-job-instance-shopify-import-edit-credentials-apiPassword:
+        module: shopify/common/password
+        parent: pim-job-instance-shopify-import-edit-credentials
+        position: 130
+        targetZone: credentials
+        config:
+            fieldCode: configuration.apiPassword
+            label: shopify.form.properties.password.title
+            readOnly: false

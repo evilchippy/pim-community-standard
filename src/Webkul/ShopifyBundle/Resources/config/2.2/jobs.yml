@@ -1,0 +1,12 @@
+services:
+    webkul_shopify_connector.quick_export_job:
+        class: 'Akeneo\Component\Batch\Job\Job'
+        arguments:
+            - '%webkul_shopify_connector.quick_export_job_name%'
+            - '@event_dispatcher'
+            - '@akeneo_batch.job_repository'
+            -
+                - '@webkul.step.shopify_category.quick_export'
+                - '@webkul.step.shopify_product.quick_export'
+        tags:
+            - { name: akeneo_batch.job, connector: '%webkul_shopify.connector.name%', type: '%pim_enrich.job.quick_export_type%' }

@@ -1,0 +1,75 @@
+parameters:
+    webkul_shopify.connector.name: Shopify Connector
+    webkul_shopify_connector.job_name: shopify_export
+    webkul_shopify_connector.category_job_name: shopify_category_export
+    webkul_shopify_connector.quick_export_job_name: shopify_quick_export
+    webkul_shopify_connector.product_only.job_name: shopify_product_export
+    webkul_shopify_connector.import_job_name: shopify_import
+
+services:
+    webkul_shopify_connector.job:
+        class: 'Akeneo\Component\Batch\Job\Job'
+        arguments:
+            - '%webkul_shopify_connector.job_name%'
+            - '@event_dispatcher'
+            - '@akeneo_batch.job_repository'
+            -
+                - '@webkul.step.shopify_category.export'
+                # - '@webkul.step.shopify_attribute.export'
+                # - '@webkul.step.shopify_attribute_option.export'
+                - '@webkul.step.shopify_product.export'
+        tags:
+            - { name: akeneo_batch.job, connector: '%webkul_shopify.connector.name%', type: 'export' }
+
+    webkul_shopify_connector.category_job:
+        class: 'Akeneo\Component\Batch\Job\Job'
+        arguments:
+            - '%webkul_shopify_connector.category_job_name%'
+            - '@event_dispatcher'
+            - '@akeneo_batch.job_repository'
+            -
+                - '@webkul.step.shopify_category.export'
+        tags:
+            - { name: akeneo_batch.job, connector: '%webkul_shopify.connector.name%', type: 'export' }
+
+    webkul_shopify_connector.product_only_job:
+        class: 'Akeneo\Component\Batch\Job\Job'
+        arguments:
+            - '%webkul_shopify_connector.product_only.job_name%'
+            - '@event_dispatcher'
+            - '@akeneo_batch.job_repository'
+            -
+                - '@webkul.step.shopify_product.export'
+        tags:
+            - { name: akeneo_batch.job, connector: '%webkul_shopify.connector.name%', type: 'export' }            
+
+    webkul_shopify_connector.quick_export_job:
+        class: 'Akeneo\Component\Batch\Job\Job'
+        arguments:
+            - '%webkul_shopify_connector.quick_export_job_name%'
+            - '@event_dispatcher'
+            - '@akeneo_batch.job_repository'
+            -
+                - '@webkul.step.shopify_category.quick_export'
+                - '@webkul.step.shopify_product.quick_export'
+        tags:
+            - { name: akeneo_batch.job, connector: '%webkul_shopify.connector.name%', type: '%pim_enrich.job.quick_export_type%' }
+        
+    webkul_shopify_connector.import.job:
+        class: 'Akeneo\Component\Batch\Job\Job'
+        arguments:
+            - '%webkul_shopify_connector.import_job_name%'
+            - '@event_dispatcher'
+            - '@akeneo_batch.job_repository'
+            -
+                - '@webkul.step.shopfiy_category_import'
+                - '@webkul.step.shopify_attribute.import'
+                - '@webkul.step.shopify_attribute_option.import'
+                - '@webkul.step.shopify_family_variant.import'
+                - '@webkul.step.shopify_product_model_import'
+                - '@webkul.step.shopify_product_import'
+                # - '@webkul.step.shopify_product_models_descendants.import'
+        tags:
+            - { name: akeneo_batch.job, connector: '%webkul_shopify.connector.name%', type: 'import' }
+
+                   

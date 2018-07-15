@@ -1,0 +1,18 @@
+services:
+    webkul_shopify.provider.form.job_instance:
+        class: '%pim_enrich.provider.form.job_instance.class%'
+        arguments:
+            -
+                shopify_export: pim-job-instance-shopify-export
+                shopify_product_export: pim-job-instance-shopify-export
+        tags:
+            - { name: pim_enrich.provider.form }
+
+    webkul_shopify.provider.form.category_job_instance:
+        class: '%pim_enrich.provider.form.job_instance.class%'
+        arguments:
+            -
+                shopify_category_export: pim-job-instance-shopify-category-export
+                shopify_import: pim-job-instance-shopify-import
+        tags:
+            - { name: pim_enrich.provider.form }

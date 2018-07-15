@@ -1,0 +1,205 @@
+<!-- Styles for grid view -->
+<style>
+    .AknFormContainer-Mappings .field-input,.AknFormContainer-Mappings .field-header,.AknFormContainer-Mappings .header-col {
+        display: inline-block;
+        width: calc(33% - 2px);
+        border: none;
+    }
+    .AknFormContainer-Mappings .AknForm-header.widget-header {
+        margin-bottom: 10px;
+    }
+    .AknSettingField {
+        width: 80%;
+    }
+    .ak-margin-top {
+        margin-top: 10px;
+    }
+</style>
+
+<!-- //HTML for form grid view -->
+<div class="AknFormContainer AknFormContainer--withPadding  AknFormContainer-Mappings shopify-importsettings" style="width: 100%">
+    
+    <!-- //Family Selection -->
+    <div>
+        <div class="AknSubsection-title">
+            <%- _.__('Attribute Mapping') %>
+        </div>
+        <div class="field-group">
+            <div class="AknFieldContainer-header">
+                <label title="Code" class="AknFieldContainer-label control-label required truncate">
+                    <span class="AknFieldContainer-validationError">
+                            <i class="icon-information-sign"></i> <span class="info-message"><em>Note :</em> <%- _.__('If you Change Family After Import family_variant property cannot be modified') %> </span>
+                    </span>
+                    
+                </label>
+            </div>
+             
+            <div class="AknFieldContainer">
+                <div class="field-header">
+                    <label class="AknFieldContainer-label">
+                        <%- _.__('Set Family (For Simple Products)') %> 
+                    </label>
+                </div>
+                <div class="field-input">
+                    <select name="family" id="pim_enrich_entity_form_family" class="select2 label-field AknSettingField otherimportsetting"  data-wrapper="otherimportsetting" <% %>readonly = "readonly" 
+                        <% selectVal = model && typeof(model['otherimportsetting']) !== 'undefined' && typeof(model['otherimportsetting']['family']) !== 'undefined' ?  model['otherimportsetting']['family'] : '' %> >
+                        <option value="<%- '' %>" > <%- 'Select Family' %> </option>
+                        <% _.each(families, function(family) {  %>
+                            <option value="<%- family.code %>" <% if(family.code === selectVal) { %>selected="selected"<% } %> >
+                                <%- 'undefined' !== typeof(family.labels[currentLocale]) ? family.labels[currentLocale] : family.labels[Object.keys(family.labels).length] ? family.labels[Object.keys(family.labels).length] : family.code %>
+                            </option> 
+                        <%  }); %>
+
+                    </select>
+                </div>
+                <span class="AknButton AknButton--default AknButton--small family-change">
+                    <%- _.__('Change Family') %>
+                </span>
+            </div>
+            
+        </div>
+    </div> 
+
+    <!-- //Common Image Selection -->
+    <div>
+        <div class="field-group">
+            <div class="AknFieldContainer">
+                <div class="field-header">
+                    <label class="AknFieldContainer-label">
+                        <%- _.__('Set Common Images') %> 
+                    </label>
+                </div>
+                <div class="field-input">
+                    <select name="commonimage" id="pim_enrich_entity_form_commonimage" class="select2 label-field AknSettingField otherimportsetting"  data-wrapper="otherimportsetting" multiple="multiple" >
+                        <option><%- _.__('Select Akeneo Attribute') %></option>
+                        <% selectVal = model && typeof(model['otherimportsetting']) !== 'undefined' && typeof(model['otherimportsetting']["commonimage"]) !== 'undefined' ?  model['otherimportsetting']["commonimage"] : '' %>
+                        <% _.each(attributes, function(attribute) {  if(attribute.type === "pim_catalog_image"){ %>
+                                <option value="<%- attribute.code %>" <% if(attribute.code === selectVal || selectVal.indexOf(attribute.code) !== -1 ) { %>selected="selected"<% } %> >
+                                    
+                                    <%- 'undefined' !== typeof(attribute.labels[currentLocale]) ? attribute.labels[currentLocale] : attribute.labels[Object.keys(attribute.labels).length]  %>
+                                </option>
+                        <%} }); %>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div> 
+
+    <!-- //Variant Image Selection -->
+    <div>
+        <div class="field-group">
+            <div class="AknFieldContainer">
+                <div class="field-header">
+                    <label class="AknFieldContainer-label">
+                        <%- _.__('Set Variant Image') %> 
+                    </label>
+                </div>
+                <div class="field-input">
+                    <select name="variantimage" id="pim_enrich_entity_form_variantimage" class="select2 label-field AknSettingField otherimportsetting"  data-wrapper="otherimportsetting" >
+                        <option><%- _.__('Select Akeneo Attribute') %></option>
+                        <% selectVal = model && typeof(model['otherimportsetting']) !== 'undefined' && typeof(model['otherimportsetting']["variantimage"]) !== 'undefined' ?  model['otherimportsetting']["variantimage"] : '' %>
+                        <% _.each(attributes, function(attribute) {  if(attribute.type === "pim_catalog_image"){ %>
+                                <option value="<%- attribute.code %>" <% if(attribute.code === selectVal) { %>selected="selected"<% } %> >
+                                    
+                                    <%- 'undefined' !== typeof(attribute.labels[currentLocale]) ? attribute.labels[currentLocale] : attribute.labels[Object.keys(attribute.labels).length]  %>
+                                </option>
+                        <%} }); %>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div> 
+
+    <!-- Smart Collection import setting -->
+    <div class="AknSubsection-title">
+        <%- _.__('Other Import Setting') %>
+    </div>
+    <div class="field-group">
+        <div class="AknFieldContainer">
+            <div class="field-header">
+                <label class="AknFieldContainer-label">
+                    Import Smart Collection as Collection
+                </label>
+            </div>
+            <div class="field-input">
+                <div class="switch switch-small" data-on-label="Enabled" data-off-label="Disabled">
+                    <input id="pim_enrich_form_smart_collection" type="checkbox" name="smart_collection"  <% if(model['others']['smart_collection'] == true) { %> checked <% } %> >
+                    <!--  -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <!-- Map More Attribute Mapping -->
+    <div class="tabsection-title">
+        <span>
+            <%- _.__('MAP MORE ATTRIBUTE MAPPINGS') %>
+        </span>
+        <i class="AknIconButton icon-info-sign" data-toggle="tooltip" data-placement="right" data-original-title="<%- _.__('Map fields below for Product import. While importing product which attribute would be used as title, body_html etc.You can also specify value which would be used in all products while importing.') %>"></i>
+    </div>
+
+    <div class="AknForm-header widget-header">
+        <div class="header-col AknSubsection-title">
+            <%- _.__('shopify.field_label') %>            
+        </div>
+        <div class="header-col AknSubsection-title">
+            <%- _.__('shopify.field_in_akeneo') %>
+        </div>
+              
+    </div> 
+
+    <!-- Input Field -->
+    <div>
+        <% _.each(fields, function (field,  key) { %>
+            <div class="AknFieldContainer shopify-mapping-row" >
+                <div class="field-header">
+                    <label class="AknFieldContainer-label">
+                        <%- _.__(field.name) %> <em>[<%- field.name %>]</em>
+                    </label>
+                </div>
+                <div class="field-input">
+                    <select name="<%- field.name %>" id="pim_enrich_entity_form_<%- field.name %>" class="select2 label-field AknSettingField"  data-wrapper="importsettings" 
+                        <% if(model && typeof(model['defaults']) !== 'undefined' && typeof(model['defaults'][field.name]) !== 'undefined' && model['defaults'][field.name]){ %>readonly="readonly"<% } %> 
+                    >
+                        <option><%- _.__('Select Akeneo Attribute') %></option>
+                        <% selectVal = model && typeof(model['importsettings']) !== 'undefined' && typeof(model['importsettings'][field.name]) !== 'undefined' ?  model['importsettings'][field.name] : '' %>
+                        <% _.each(attributes, function(attribute) {  %>
+                                <option value="<%- attribute.code %>" <% if(attribute.code === selectVal) { %>selected="selected"<% } %> >
+                                    
+                                    <%- 'undefined' !== typeof(attribute.labels[currentLocale]) ? attribute.labels[currentLocale] : attribute.labels[Object.keys(attribute.labels).length]  %>
+                                </option>
+                        <% }); %>
+                    </select>
+                <% if('undefined' !== typeof(field.dynamic) && field.dynamic) { %>
+                            <span class="AknButtonList-item AknIconButton AknIconButton--round  AknIconButton--remove delete-row" data-id="<%- key %>" data-name="<%- field.name %>" style="vertical-align: middle"></span>
+                <% } %>  
+                </div> 
+            </div>
+        <% }); %>
+    </div>
+
+     
+
+    <div>
+        <div class="AknSubsection-title">
+            <%- _.__('Map more Attributes') %>
+        </div>
+        <div class="field-group">
+            <div class="AknFieldContainer-header">
+                <label title="Code" class="AknFieldContainer-label control-label required truncate">
+                    <%- _.__('Shopify Standard attribute code') %> <em>(required)</em>
+                </label>
+            </div>
+            <div class="field-input">
+                <input type="text" class="AknTextField label-field view-only" id="dynamic-filed-input">
+            </div>
+
+            <span class="AknButton AknButton--grey AknButton--small field-add">
+                <%- _.__('Add Field') %>
+            </span>
+        </div>
+    </div> 
+
+  
+</div>

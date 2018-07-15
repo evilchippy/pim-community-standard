@@ -1,0 +1,27 @@
+webkul_shopify_connector_configuration:
+    path: /shopify-configuration/
+
+webkul_shopify_connector_configuration_get:
+    path: /shopify-configuration/rest
+    defaults: { _controller: ShopifyBundle:Rest\Configuration:credential }
+    methods: [GET]
+
+webkul_shopify_connector_configuration_post:
+    path: /shopify-configuration/rest
+    defaults: { _controller: ShopifyBundle:Rest\Configuration:credential }
+    methods: [POST]
+
+webkul_shopify_connector_configuration_action:
+    path: /shopify-configuration/rest/action
+    defaults: { _controller: ShopifyBundle:Rest\Configuration:getData }
+    methods: [GET]
+
+webkul_shopify_connector_configuration_active_currencies:
+    path: /shopify-configuration/rest/activecurrencies
+    defaults: { _controller: ShopifyBundle:Rest\Configuration:getActiveCurrencies }
+    methods: [GET]
+
+webkul_shopify_connector_configuration_get_logger_path:
+    path: /shopify-configuration/rest/logger_path
+    defaults: { _controller: ShopifyBundle:Rest\Configuration:getLogFile }
+    methods: [GET]

@@ -1,0 +1,28 @@
+parameters:
+    webkul_shopify.writer.database.category.class: 'Webkul\ShopifyBundle\Connector\Writer\Import\CategoryWriter'
+services:
+    webkul_shopify.writer.product.api:
+        class: 'Webkul\ShopifyBundle\Connector\Writer\ProductWriter'
+        arguments:
+            - '@shopify.connector.service'
+
+    webkul_shopify.writer.category.api:
+        class: 'Webkul\ShopifyBundle\Connector\Writer\CategoryWriter'
+        arguments:
+            - '@shopify.connector.service'
+
+    webkul_shopify.writer.attribute.api:
+        class: 'Webkul\ShopifyBundle\Connector\Writer\AttributeWriter'
+        arguments:
+            - '@shopify.connector.service'
+
+    webkul_shopify.writer.attribute_option.api:
+        class: 'Webkul\ShopifyBundle\Connector\Writer\AttributeOptionWriter'
+        arguments:
+            - '@shopify.connector.service'
+    
+    # webkul_shopify.writer.database.category:
+    #     class: '%webkul_shopify.writer.database.category.class%'
+    #     arguments:
+    #         - '@pim_catalog.saver.category'
+    #         - '@akeneo_storage_utils.doctrine.object_detacher'

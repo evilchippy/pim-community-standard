@@ -1,0 +1,110 @@
+<style>
+    .wk_info_text > b {
+        display: inline-block;
+        font-size: 16px;
+        margin-bottom: 15px;
+    }
+    .wk_info_text {
+        font-size: 14px;
+    } 
+    .wk_doc_tab ol li {
+        padding-bottom: 10px;
+    }
+    .wk_highlight {
+        font-style: italic;
+    }
+    .wk_info_text:not(:last-child) {
+        border-bottom: 1px solid #ccd1d8;
+        padding-bottom: 15px;
+        margin-bottom: 15px;
+    }
+    .wk_toggler {
+        cursor: pointer;
+    }
+    .wk_toggler .icon {
+        background: url("../bundles/pimui/images/jstree/icon-right.svg") 50% 50% no-repeat;
+        height: 12px;
+        width: 22px;
+        margin: 0 5px 0 0;
+        background-size: 20px;   
+        display: inline-block;
+        cursor: pointer;
+    }
+    .wk_toggler.active .icon {
+        -webkit-transform: rotate(90deg);
+        -moz-transform: rotate(90deg);
+        -o-transform: rotate(90deg);
+        -ms-transform: rotate(90deg);
+        transform: rotate(90deg);        
+    }    
+    .wk_toggle {
+        margin-left: 50px;
+    }
+    .wk_toggler ~ .wk_toggle {
+        display: none;
+    }
+    .wk_toggler.active ~ .wk_toggle {
+        display: block;
+    }
+    #container .AknButtonList[data-drop-zone="buttons"] div:nth-of-type(1) {
+        display: none;    
+    }
+</style>
+<div class="AknFormContainer--withPadding wk_doc_tab">    
+    <div class="wk_info_text">
+        <b><%= _.__('How to Setup:') %></b>
+        <ol class="wk_steps">
+            <li>
+                <span class="wk_toggler">
+                    <%= _.__('Get credentials of Private App from shopify Admin panel.') %>
+                    <span class="icon"></span>
+                </span>
+                <a href="https://help.shopify.com/manual/apps/private-apps" target="_blank">
+                    <i class="AknIconButton icon-info-sign" data-toggle="tooltip" data-placement="right" data-original-title=""></i>
+                </a>
+                <div class="wk_toggle">
+                    <ol class="wk_info">
+                        <li>
+                            <%- _.__('From your Shopify admin, go to') %><b> <%- _.__('Apps') %>.</b>
+                        </li>
+                        <li>
+                            <%- _.__('Click') %> <b><%- _.__('Manage private apps.') %>.</b>
+                        </li>
+                        <li>
+                            <%- _.__('Click') %> <b><%- _.__('Create new private app.') %>.</b>
+                        </li>
+                        <li>
+                            <%= _.__('In the <b>Description</b> section, enter a <b>Private app name</b>.') %>
+                        </li>
+                        <li>
+                            <%= _.__('In the <b>Permissions</b> section, select Read and Write Permission for <b>Product information</b> and <b>Products, variants and collections</b>.') %>
+                        </li>
+                        <li>
+                            <%= _.__("When you're done, click Save. Use API key and password along with your Shop Front Url as Credentials.") %>
+                        </li>
+                    </ol>
+                </div>                
+            </li>            
+            <li>
+                <%= _.__('Goto <span class="wk_highlight">Setup Credentials</span> tab and enter your Api credentials and Save credentials.') %>
+            </li>
+            <li>
+                <%= _.__('Then, goto <span class="wk_highlight">Attribute Mapping</span> tab and Attribute Mapping.') %>
+            </li>
+        </ol>
+    </div>
+    <div class="wk_info_text">
+        <b><%= _.__('How to Export Data to Shopify Store:') %></b>
+        <ol class="wk_steps">
+            <li>
+                <%= _.__('Goto <span class="wk_highlight">Export jobs</span> and Create a job with by entering <i>code</i>, <i>label</i> and Selecting <i>Shopify Export Job.</i>') %>
+            </li>
+            <li>
+                <%= _.__('After creating job Goto <span class="wk_highlight">Content tab</span> Add neccessary Filters in <i>FILTER THE DATA</i> and <i>FILTER THE PRODUCTS</i>. After that Save job.') %>
+            </li>
+            <li>
+                <%= _.__('Run job whenever you want to Export Product by navigating to Export profiles >> Shopify Job and Clicking on Export now') %>
+            </li>
+        </ol>                        
+    </div>
+</div>

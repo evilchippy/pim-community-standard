@@ -1,0 +1,64 @@
+config:
+    paths:
+        # Controller
+        shopify/controller/configuration: shopify/js/controller/configuration
+        shopify/form/configuration: shopify/js/form/configuration
+        # tabs
+        # shopify/form/configuration/tab/overview: shopify/js/form/configuration/tab/overview
+        shopify/form/configuration/tab/documentation: shopify/js/form/configuration/tab/documentation
+        shopify/form/configuration/tab/credential: shopify/js/form/configuration/tab/credential
+        shopify/form/configuration/tab/settings: shopify/js/form/configuration/tab/settings
+        shopify/form/configuration/tab/import-settings: shopify/js/form/configuration/tab/importsettings
+        shopify/form/configuration/tab/other-settings: shopify/js/form/configuration/tab/othersettings
+        # buttons
+        shopify/form/configuration/save: shopify/js/form/configuration/save
+        shopify/form/configuration/jobs: shopify/js/form/configuration/jobs
+        shopify/form/configuration/import/jobs: shopify/js/form/configuration/importjobs
+
+        # Templates
+        # shopify/template/configuration/tab/overview: shopify/templates/configuration/tab/overview.html
+        shopify/template/configuration/tab/documentation: shopify/templates/configuration/tab/documentation.html
+        shopify/template/configuration/tab/credential: shopify/templates/configuration/tab/credential.html
+        shopify/template/configuration/tab/settings: shopify/templates/configuration/tab/settings.html
+        shopify/template/configuration/tab/importsettings: shopify/templates/configuration/tab/importsettings.html
+        shopify/template/configuration/tab/othersettings: shopify/templates/configuration/tab/othersettings.html
+        shopify/template/configuration/locales: shopify/templates/configuration/locales.html
+        shopify/template/configuration/currencies: shopify/templates/configuration/currencies.html
+        shopify/template/configuration/family: shopify/templates/configuration/family.html
+        shopify/template/job/export/credentials: shopify/templates/job/export/credentials.html
+        shopify/template/common/password: shopify/templates/common/password.html
+        shopify/template/common/meta: shopify/templates/common/meta.html
+        
+
+        # other
+        shopify/form/configuration/locales: shopify/js/form/configuration/locales
+        shopify/form/configuration/currencies: shopify/js/form/configuration/currencies
+        shopify/form/configuration/family: shopify/js/form/configuration/family
+        shopify/job/export/credentials: shopify/js/job/export/credentials
+        shopify/common/password: shopify/js/common/password
+        shopify/common/meta: shopify/js/common/meta        
+        
+        
+
+    config:
+        pim/controller-registry:
+            controllers:
+                webkul_shopify_connector_configuration: #Router for above module
+                    module: shopify/controller/configuration     #Module
+        
+        shopify/form/configuration/save:
+            route: webkul_shopify_connector_configuration_post
+
+        pim/fetcher-registry:
+            fetchers:
+                shopify-fields:
+                    module: pim/base-fetcher
+                    options:
+                        urls:
+                            list: webkul_shopify_connector_configuration_action
+    
+                shopify-quickcurrencies:
+                    module: pim/base-fetcher
+                    options:
+                        urls:
+                            list: webkul_shopify_connector_configuration_active_currencies

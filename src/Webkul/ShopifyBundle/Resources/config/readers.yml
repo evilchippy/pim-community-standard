@@ -1,0 +1,68 @@
+parameters:
+    shopify.reader.database.category.class: Webkul\ShopifyBundle\Connector\Reader\CategoryReader
+    shopify.reader.database.category.quick_export.class: Webkul\ShopifyBundle\Connector\Reader\CategoryQuickReader
+    webkul_shopify.reader.import.category.class: Webkul\ShopifyBundle\Connector\Reader\Import\CategoryReader
+    webkul_shopify.reader.import.product.class: Webkul\ShopifyBundle\Connector\Reader\Import\ProductReader
+    webkul_shopify.reader.import.product_model.class: Webkul\ShopifyBundle\Connector\Reader\Import\ProductModelReader
+    webkul_shopify.reader.import.attribute.class: Webkul\ShopifyBundle\Connector\Reader\Import\AttributeReader
+    webkul_shopify.reader.import.attribute_option.class: Webkul\ShopifyBundle\Connector\Reader\Import\AttributeOptionReader
+    webkul_shopify.reader.import.family_variant.class: Webkul\ShopifyBundle\Connector\Reader\Import\FamilyVariantReader
+services:
+    shopify.reader.database.category:
+        class: '%shopify.reader.database.category.class%'
+        arguments:
+            - '@pim_catalog.repository.category'
+            - '@pim_catalog.repository.channel'
+    
+    shopify.reader.database.category.quick_export:
+        class: '%shopify.reader.database.category.quick_export.class%'
+        arguments:
+            - '@doctrine.orm.entity_manager'
+            - '@pim_catalog.repository.channel'
+
+    webkul_shopify.reader.import.category:
+        class: '%webkul_shopify.reader.import.category.class%'
+        arguments:
+            - '@shopify.connector.service'
+            - '@pim_catalog.repository.category'
+            - '@pim_catalog.repository.channel'
+
+    webkul_shopify.reader.import.product_model:
+        class: '%webkul_shopify.reader.import.product_model.class%'
+        arguments:
+            - '@shopify.connector.service'
+            - '@doctrine.orm.entity_manager'
+            - '@akeneo_file_storage.file_storage.file.file_storer'
+            - '@akeneo_file_storage.repository.file_info'
+            - '%tmp_storage_dir%'
+        
+    webkul_shopify.reader.import.product:
+        class: '%webkul_shopify.reader.import.product.class%'
+        arguments:
+            - '@shopify.connector.service'
+            - '@doctrine.orm.entity_manager'
+            - '@akeneo_file_storage.file_storage.file.file_storer'
+            - '@akeneo_file_storage.repository.file_info'
+            - '%tmp_storage_dir%'
+    
+    webkul_shopify.reader.import.attribute:
+        class: '%webkul_shopify.reader.import.attribute.class%'
+        arguments:
+            - '@shopify.connector.service'
+            - '@doctrine.orm.entity_manager'
+
+    webkul_shopify.reader.import.attribute_option:
+        class: '%webkul_shopify.reader.import.attribute_option.class%'
+        arguments:
+            - '@shopify.connector.service'
+            - '@doctrine.orm.entity_manager'
+
+    webkul_shopify.reader.import.family_variant:
+        class: '%webkul_shopify.reader.import.family_variant.class%'
+        arguments:
+            - '@shopify.connector.service'
+            - '@doctrine.orm.entity_manager'
+            - '@pim_enrich.controller.rest.family'
+            - '@pim_catalog.updater.family'
+            - '@pim_catalog.saver.family'
+            - '@pim_catalog.factory.family'
